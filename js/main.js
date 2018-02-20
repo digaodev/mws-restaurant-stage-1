@@ -5,8 +5,6 @@ var markers = [];
 function registerServiceWorker() {
   if (!navigator.serviceWorker) return;
 
-  var indexController = this;
-
   navigator.serviceWorker.register('/sw.js').then(function(reg) {
     if (!navigator.serviceWorker.controller) {
       return;
@@ -14,7 +12,7 @@ function registerServiceWorker() {
   });
 }
 
-// registerServiceWorker();
+registerServiceWorker();
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
