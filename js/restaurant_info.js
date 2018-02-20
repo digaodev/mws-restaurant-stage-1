@@ -50,17 +50,22 @@ fetchRestaurantFromURL = (callback) => {
  */
 fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name');
+  name.setAttribute('tabindex', '0');
   name.innerHTML = restaurant.name;
 
   const address = document.getElementById('restaurant-address');
+  address.setAttribute('tabindex', '0');
   address.innerHTML = restaurant.address;
 
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
   image.alt = `Image of ${restaurant.name} restaurant.`;
+  image.setAttribute('tabindex', '0');
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
 
   const cuisine = document.getElementById('restaurant-cuisine');
+  cuisine.setAttribute('tabindex', '0');
+  cuisine.setAttribute('aria-label', `${restaurant.cuisine_type} cuisine`);
   cuisine.innerHTML = restaurant.cuisine_type;
 
   // fill operating hours
@@ -76,8 +81,12 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
  */
 fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => {
   const hours = document.getElementById('restaurant-hours');
+  hours.setAttribute('tabindex', '0');
+  hours.setAttribute('aria-label', 'Operating hours');
+
   for (let key in operatingHours) {
     const row = document.createElement('tr');
+    row.setAttribute('tabindex', '0');
 
     const day = document.createElement('td');
     day.innerHTML = key;
@@ -98,11 +107,15 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
   const title = document.createElement('h2');
   title.innerHTML = 'Reviews';
+  title.setAttribute('aria-label', 'List of Reviews');
+  title.setAttribute('tabindex', '0');
   container.appendChild(title);
+
 
   if (!reviews) {
     const noReviews = document.createElement('p');
     noReviews.innerHTML = 'No reviews yet!';
+    noReviews.setAttribute('tabindex', '0');
     container.appendChild(noReviews);
     return;
   }
@@ -118,17 +131,20 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  */
 createReviewHTML = (review) => {
   const li = document.createElement('li');
+
   const headerDiv = document.createElement('div');
   headerDiv.classList.add('review-header');
 
   const name = document.createElement('p');
   name.innerHTML = review.name;
   name.classList.add('review-header__name');
+  name.setAttribute('tabindex', '0');
   headerDiv.appendChild(name);
 
   const date = document.createElement('p');
   date.innerHTML = review.date;
   date.classList.add('review-header__date');
+  date.setAttribute('tabindex', '0');
   headerDiv.appendChild(date);
 
   li.appendChild(headerDiv);
@@ -136,10 +152,12 @@ createReviewHTML = (review) => {
   const rating = document.createElement('p');
   rating.innerHTML = `Rating: ${review.rating}`;
   rating.classList.add('review-rating');
+  rating.setAttribute('tabindex', '0');
   li.appendChild(rating);
 
   const comments = document.createElement('p');
   comments.innerHTML = review.comments;
+  comments.setAttribute('tabindex', '0');
   li.appendChild(comments);
 
   return li;

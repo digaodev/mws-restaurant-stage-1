@@ -10,17 +10,20 @@
 
 <body>
   <header>
-    <nav>
-      <h1><a href="/">Restaurant Reviews</a></h1>
+    <nav id="nav">
+      <h1>
+        <a href="/" tabindex="-1">Restaurant Reviews</a>
+      </h1>
     </nav>
   </header>
 
+  <a class="skip-link" href="#filter-options">Skip to Filter Options</a>
   <main id="maincontent">
-    <section id="map-container" aria-label="Google Maps area showing each restaurant location">
+    <section id="map-container" role="application" aria-label="Google Maps area showing each restaurant location">
       <div id="map"></div>
     </section>
     <section>
-      <div class="filter-options">
+      <div id="filter-options" class="filter-options" aria-label="Filter Options">
         <h2>Filter Results</h2>
         <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()" aria-label="Filter by neighborhoods">
           <option value="all">All Neighborhoods</option>
@@ -39,7 +42,10 @@
 
 
   <footer id="footer">
-    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+    Copyright (c) 2017
+    <a href="/" aria-label="Link to Home">
+      <strong>Restaurant Reviews</strong>
+    </a> All Rights Reserved.
   </footer>
 
 </body>
